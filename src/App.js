@@ -2,7 +2,7 @@ import React from "react";
 import Search from './components/Search'
 import Home from './components/Home';
 import Login from './components/auth/Login';
-import Signup from './components/Signup';
+import Register from './components/auth/Register';
 
 import {
   BrowserRouter as Router,
@@ -38,7 +38,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/signup">
-            <Signup />
+            <Register />
           </Route>
           <Route path="/">
             <Home />

@@ -1,9 +1,10 @@
 import React from "react";
+import Search from './Search'
 
 function Home() {
 
   return (
-    <p>Home</p>
+    <Search />
   );
 }
 
