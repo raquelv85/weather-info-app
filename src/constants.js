@@ -1,5 +1,7 @@
 const SET_TOKEN = "SET_TOKEN";
+const DELETE_TOKEN = "DELETE_TOKEN";
 
 export {
-  SET_TOKEN
+  SET_TOKEN,
+  DELETE_TOKEN
 }

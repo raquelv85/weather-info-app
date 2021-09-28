@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import { Link } from "react-router-dom";
+import { register } from '../../actions/auth';
+import { useDispatch, useSelector } from "react-redux";
+
 
 function Register() {
+  const dispatch = useDispatch();
   const [formValues, handleInputChange] = useForm({
     email: "test@test.com",
-    password: "123456",
+    password: "123456", 
     password2: "123456",
   });
 
   const { email, password, password2 } = formValues;
 
+  const submit = (e) => {
+    e.preventDefault()
+
+    console.log("prueba")
+    dispatch(register(email, password))
+  }
+
   return (
     <>
       <h3 className="auth__title">Register</h3>
 
-      <form>
+      <form onSubmit={submit}>
       
         <input
           type="text"

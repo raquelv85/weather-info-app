@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import { useForm } from "../../hooks/useForm"
 import { Link } from "react-router-dom";
+import { login,logout } from '../../actions/auth';
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
-
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
   const [formValues, handleInputChange] = useForm({
     email: "test@test.com",
@@ -12,12 +14,18 @@ function Login() {
 
   const { email, password } = formValues;
 
+  const submit = (e) => {
+    e.preventDefault()
+
+    console.log("prueba")
+    dispatch(login(email, password))
+  }
 
   return (
     <>
       <h3 className="auth__title">Login</h3>
 
-      <form >
+      <form onSubmit={submit}>
         <input
           type="text"
           placeholder="Email"
@@ -38,18 +46,23 @@ function Login() {
         />
 
         <button
-          disabled={loading}
+          //disabled={loading}
           type="submit"
           className="btn btn-primary btn-block"
-        >
-          Login
-        </button>
-
-
+          value="Login"
+        >Login</button>
+        
         <Link to="/signup" className="link">
           Create new account
         </Link>
       </form>
+      <button
+          onClick={() => dispatch(logout())}
+          //disabled={loading}
+          type="submit"
+          className="btn btn-primary btn-block"
+          value="Login"
+        >logout</button>
     </>
   );
 }

@@ -4,15 +4,20 @@ import Home from './components/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 
+
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+ 
+
 
 function App() {
-
+  
+  
   return (
 
     <Router>
