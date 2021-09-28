@@ -5,7 +5,7 @@ import { register } from '../../actions/auth';
 import { useDispatch, useSelector } from "react-redux";
 
 
-function Register() {
+const Register = () => {
   const dispatch = useDispatch();
   const [formValues, handleInputChange] = useForm({
     email: "test@test.com",

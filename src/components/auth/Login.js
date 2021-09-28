@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { login,logout } from '../../actions/auth';
 import { useDispatch, useSelector } from "react-redux";
 
-function Login() {
+const Login = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
   const [formValues, handleInputChange] = useForm({
@@ -56,13 +56,7 @@ function Login() {
           Create new account
         </Link>
       </form>
-      <button
-          onClick={() => dispatch(logout())}
-          //disabled={loading}
-          type="submit"
-          className="btn btn-primary btn-block"
-          value="Login"
-        >logout</button>
+      
     </>
   );
 }

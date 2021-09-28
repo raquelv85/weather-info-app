@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -8,7 +14,7 @@ const firebaseConfig = {
   projectId: "weather-info-app-6e5f3",
   storageBucket: "weather-info-app-6e5f3.appspot.com",
   messagingSenderId: "383172150287",
-  appId: "1:383172150287:web:03144eb5e6f15f4eda8f7a"
+  appId: "1:383172150287:web:03144eb5e6f15f4eda8f7a",
 };
 
 const firebase = initializeApp(firebaseConfig);
@@ -18,5 +24,6 @@ export {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
-}
+  signOut,
+  onAuthStateChanged
+};

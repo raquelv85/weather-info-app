@@ -1,53 +1,58 @@
-import React from "react";
-import Search from './components/Search'
+import React, {useEffect, useState} from "react";
+
+//components
 import Home from './components/Home';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
 
+//routes
+import PrivateRoute from './routers/PrivateRoute'
+import PublicRoute from './routers/PublicRoute'
+import AuthRouter from './routers/AuthRouter'
 
+//firebase
+import { 
+  getAuth,
+  onAuthStateChanged
+} from "./firebase/firebase-config"
 
+//react-router
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Redirect
 } from "react-router-dom";
+
+//redux
+import { useDispatch } from "react-redux";
+import { loginSuccess } from './actions/auth'
+
  
 
 
 function App() {
-  
-  
+
+  const [isLogin, setIsLogin] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    onAuthStateChanged(getAuth(),(user) => {
+        if(user?.uid){
+            dispatch(loginSuccess(user.uid))
+            setIsLogin(true)
+        }else {
+            setIsLogin(false)
+        }
+
+    });
+  }, []);
+  console.log({isLogin})
   return (
 
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/signin">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Registro</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/signin">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Register />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <PublicRoute path="/auth" isAuth={isLogin} component={AuthRouter}/>
+          <PrivateRoute exact path="/" isAuth={isLogin} component={Home}/>
+          <Redirect to="/auth/signin" />
         </Switch>
       </div>
     </Router>
