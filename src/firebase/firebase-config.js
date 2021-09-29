@@ -6,6 +6,7 @@ import {
   signOut,
   onAuthStateChanged
 } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,11 +20,14 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 
+const db = getFirestore();
+
 export {
   firebase,
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  db
 };

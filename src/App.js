@@ -24,6 +24,7 @@ import {
 //redux
 import { useDispatch } from "react-redux";
 import { loginSuccess } from './actions/auth'
+import { loadSearch } from './actions/searches'
 
  
 
@@ -37,6 +38,7 @@ function App() {
     onAuthStateChanged(getAuth(),(user) => {
         if(user?.uid){
             dispatch(loginSuccess(user.uid))
+            dispatch(loadSearch(user.uid))
             setIsLogin(true)
         }else {
             setIsLogin(false)

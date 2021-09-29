@@ -2,12 +2,18 @@ import React, { useEffect, useState, useCallback } from "react";
 import "@elastic/eui/dist/eui_theme_amsterdam_light.css";
 import { EuiComboBox } from "@elastic/eui";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import { addSearch } from '../actions/searches';
+
 function Search() {
   const [selectedOptions, setSelected] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [allOptions, setAllOptions] = useState([]);
   const [provinces, setProvinces] = useState([])
   const [towns, setTowns] = useState([])
+
+  const dispatch = useDispatch();
 
   const URL_PROVINCES = "https://www.el-tiempo.net/api/json/v2/provincias"
   
@@ -34,7 +40,7 @@ function Search() {
       label: item.NOMBRE,
       id: item.COD_GEO,
       key: "town-"+index,
-      type: "town"
+      type: "town",
     }));
   };
 
@@ -45,6 +51,7 @@ function Search() {
       if(selectedOptions.length === 1){
         fetchTown(selectedOptions[0].codProv)
       }else if(selectedOptions.length === 2 ) {
+        dispatch(addSearch(selectedOptions[0].codProv, selectedOptions[1].id, selectedOptions[1].label))
         fetchInfo(selectedOptions[0].codProv, selectedOptions[1].id)
       }else if(selectedOptions.length === 0){
         getProvinces()
