@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 
 //components
 import Home from './components/Home';
+import Header from './components/layout/Header';
 
 //routes
 import PrivateRoute from './routers/PrivateRoute'
@@ -48,7 +49,8 @@ function App() {
   }, []);
   console.log({isLogin})
   return (
-
+    <>
+    <Header isAuth={isLogin}/>
     <Router>
       <div>
         <Switch>
@@ -58,6 +60,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </>
   );
 }
 
