@@ -6,12 +6,11 @@ export const useForm = (initialState = {}) => {
   const reset = () => setValues(initialState);
 
   const handleInputChange = ({ target }) => {
-    console.log("ddd", target.value)
     setValues({
       ...values,
       [target.name]: target.value,
     });
   };
-  console.log("ddd", values)
+
   return [values, handleInputChange, reset];
 };

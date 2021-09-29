@@ -8,18 +8,18 @@ import {
   EuiHeaderLink,
 } from '@elastic/eui';
 
-const Header = ({isAuth}) => {
+const Header = ({isAuth, logout}) => {
   return (
     <EuiHeader>
       <EuiHeaderSectionItem border="right">
-        <EuiHeaderLogo>Elastic</EuiHeaderLogo>
+        <EuiHeaderLogo>Weather-info-app</EuiHeaderLogo>
       </EuiHeaderSectionItem>
 
       <EuiHeaderSectionItem>
         <EuiHeaderLinks aria-label="App navigation links example">
           {
             isAuth &&
-            <EuiHeaderLink>Logout</EuiHeaderLink>
+            <EuiHeaderLink onClick={logout}>Logout</EuiHeaderLink>
           }
         
         </EuiHeaderLinks>

@@ -12,6 +12,7 @@ import {
   EuiFormRow,
   EuiButton,
   EuiLink,
+  EuiSpacer
 } from "@elastic/eui";
 
 const Register = () => {
@@ -30,66 +31,65 @@ const Register = () => {
   };
 
   return (
-    <EuiFlexGroup justifyContent="center" style={{marginTop: "48px"}}>
-      <EuiFlexItem style={{ minWidth: 400 }} grow={false}>
-        <EuiPanel>
-          <EuiTitle
-            size="l"
-            style={{ textAlign: "center", marginBottom: "24px" }}
-          >
-            <h1>SignUp</h1>
-          </EuiTitle>
+    <>
+      <EuiSpacer />
+      <EuiFlexGroup justifyContent="center">
+        <EuiFlexItem style={{ minWidth: 400 }} grow={false}>
+          <EuiPanel>
+            <EuiTitle size="l" style={{ textAlign: "center" }}>
+              <h1>SignUp</h1>
+            </EuiTitle>
+            <EuiSpacer />
+            <form onSubmit={submit}>
+              <EuiFormRow label="Email">
+                <EuiFieldText
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleInputChange}
+                  aria-label="Email"
+                  name="email"
+                />
+              </EuiFormRow>
+              <EuiSpacer />
+              <EuiFormRow label="Password">
+                <EuiFieldPassword
+                  placeholder="Password"
+                  type={dual ? "dual" : undefined}
+                  value={password}
+                  onChange={handleInputChange}
+                  aria-label="Password"
+                  name="password"
+                />
+              </EuiFormRow>
+              <EuiSpacer />
+              <EuiFormRow label="Confirm Password">
+                <EuiFieldPassword
+                  placeholder="Confirm Password"
+                  type={dual ? "dual" : undefined}
+                  value={password2}
+                  onChange={handleInputChange}
+                  aria-label="Password"
+                  name="password2"
+                />
+              </EuiFormRow>
+              <EuiSpacer />
+              <EuiFormRow fullWidth>
+                <EuiButton type="submit" fill fullWidth>
+                  Save
+                </EuiButton>
+              </EuiFormRow>
 
-          <form onSubmit={submit}>
-            <EuiFormRow label="Email" style={{ marginBottom: "24px" }}>
-              <EuiFieldText
-                placeholder="Email"
-                value={email}
-                onChange={handleInputChange}
-                aria-label="Email"
-                name="email"
-              />
-            </EuiFormRow>
-
-            <EuiFormRow label="Password" style={{ marginBottom: "24px" }}>
-              <EuiFieldPassword
-                placeholder="Password"
-                type={dual ? "dual" : undefined}
-                value={password}
-                onChange={handleInputChange}
-                aria-label="Password"
-                name="password"
-              />
-            </EuiFormRow>
-            <EuiFormRow
-              label="Confirm Password"
-              style={{ marginBottom: "24px" }}
-            >
-              <EuiFieldPassword
-                placeholder="Confirm Password"
-                type={dual ? "dual" : undefined}
-                value={password2}
-                onChange={handleInputChange}
-                aria-label="Password"
-                name="password2"
-              />
-            </EuiFormRow>
-            <EuiFormRow fullWidth style={{ marginBottom: "24px" }}>
-              <EuiButton type="submit" fill fullWidth>
-                Save
-              </EuiButton>
-            </EuiFormRow>
-
-
-            <EuiFlexItem grow={false}>
-              <EuiLink href="/auth/signin" style={{ textAlign: "center" }}>
-                SignIn
-              </EuiLink>
-            </EuiFlexItem>
-          </form>
-        </EuiPanel>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+              <EuiSpacer />
+              <EuiFlexItem grow={false}>
+                <EuiLink href="/auth/signin" style={{ textAlign: "center" }}>
+                  SignIn
+                </EuiLink>
+              </EuiFlexItem>
+            </form>
+          </EuiPanel>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
   );
 };
 

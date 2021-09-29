@@ -1,12 +1,18 @@
-import { ADD_SEARCH } from "../constants";
+import { GET_SEARCHS, UPDATE_SEARCHS } from "../constants";
 
 import { db } from "../firebase/firebase-config";
 import { collection, addDoc, getDocs, query, orderBy, limit } from "firebase/firestore";
 
 export const addSearchSuccess = (payload) => {
-  console.log("logInSuccess");
   return {
-    type: ADD_SEARCH,
+    type: GET_SEARCHS,
+    payload,
+  };
+};
+
+export const updateSearchSuccess = (payload) => {
+  return {
+    type: UPDATE_SEARCHS,
     payload,
   };
 };
@@ -21,7 +27,7 @@ export const addSearch = (codProv, idTown, name) => {
       name,
       date: new Date().getTime(),
     };
-
+    dispatch(updateSearchSuccess(newSearch))
     const docRef = await addDoc(collection(db, `${uid}/provinces/towns`), newSearch);
   };
 };
@@ -31,7 +37,6 @@ export const loadSearch = (uid) => {
     const searches = [];
     const q = query(collection(db, `${uid}/provinces/towns`), orderBy("date", "desc"), limit(3));
 
-    console.log(q,"consulta")
     const querySnapshot = await getDocs(
       q
     );

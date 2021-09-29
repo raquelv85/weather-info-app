@@ -10,7 +10,6 @@ import {
 
 
 export const loginSuccess = (payload) => {
-  console.log("logInSuccess");
   return {
     type: SET_TOKEN,
     payload,
@@ -18,7 +17,6 @@ export const loginSuccess = (payload) => {
 };
 
 export const logoutSuccess = (payload) => {
-  console.log("logoutSuccess");
   return {
     type: DELETE_TOKEN,
     payload,
@@ -29,7 +27,6 @@ export const register = (email, password) => {
   return (dispatch) => {
     createUserWithEmailAndPassword(getAuth(), email, password)
       .then(({ user }) => {
-        console.log(user);
         dispatch(loginSuccess(user.uid));
       })
       .catch((e) => {});
@@ -40,7 +37,7 @@ export const login = (email, password) => {
   return (dispatch) => {
     signInWithEmailAndPassword(getAuth(), email, password)
       .then(({ user }) => {
-        console.log(user);
+  
         dispatch(loginSuccess(user.uid));
       })
       .catch((e) => {});

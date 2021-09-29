@@ -26,10 +26,9 @@ import {
 import { useDispatch } from "react-redux";
 import { loginSuccess } from './actions/auth'
 import { loadSearch } from './actions/searches'
+import { logout } from './actions/auth'
 
  
-
-
 function App() {
 
   const [isLogin, setIsLogin] = useState(false);
@@ -47,10 +46,10 @@ function App() {
 
     });
   }, []);
-  console.log({isLogin})
+
   return (
     <>
-    <Header isAuth={isLogin}/>
+    <Header isAuth={isLogin} logout={() => dispatch(logout())}/>
     <Router>
       <div>
         <Switch>
